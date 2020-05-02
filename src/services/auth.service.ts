@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { CredenciaisDTO } from "../models/credenciais.dto";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../config/api.config";
+import { LocalUser } from "../models/local_user";
+import { StorageService } from "./storage.service";
 
 @Injectable()
 export class AuthService {
@@ -9,9 +11,10 @@ export class AuthService {
     
 
     constructor(
-        public http: HttpClient ) {
+        public http: HttpClient ,public storage:StorageService) {
     }
 
+    //Grava login 
     authenticate(creds : CredenciaisDTO) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/login`, 
@@ -36,10 +39,10 @@ export class AuthService {
         let tok = authorizationValue.substring(7);
         let user : LocalUser = {
             token: tok,
-            email: this.jwtHelper.decodeToken(tok).sub
+            //email: this.jwtHelper.decodeToken(tok).sub
         };
         this.storage.setLocalUser(user);
-        this.cartService.createOrClearCart();
+      //  this.cartService.createOrClearCart();
     }
 
     logout() {
