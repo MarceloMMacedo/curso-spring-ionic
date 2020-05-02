@@ -9,4 +9,15 @@
 
 <ion-content padding>
 
+
+  <ion-list>
+    <button ion-item *ngFor="let item of items"  >
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/telainicial.png">
+      </ion-thumbnail>
+      <h2> {{ item.nome }} </h2>
+    </button>
+  </ion-list>
+
+
 </ion-content>
