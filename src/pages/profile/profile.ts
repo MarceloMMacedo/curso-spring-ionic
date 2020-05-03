@@ -27,12 +27,18 @@ export class ProfilePage {
       this.clienteService.findByEmail(localUser.email)
       .subscribe(response=>{
         response.imageUrl=bucketBaseUrl+'/cp'+ response.id+'.jpg';
-        console.log(response.imageUrl);
+      //console.log(response.imageUrl);
         this.cliente=response;
 
       } ,
-      error => {}
+      error => {
+        if( error.status == 403){
+          this.navCtrl.setRoot('HomePage');
+        }
+      }
       )
+    } else{
+      this.navCtrl.setRoot('HomePage');
     }
     
   }
