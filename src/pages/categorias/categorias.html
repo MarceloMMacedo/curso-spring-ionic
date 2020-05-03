@@ -13,7 +13,7 @@
   <ion-list>
     <button ion-item *ngFor="let item of items"  >
       <ion-thumbnail item-start>
-        <img src="https://storage.cloud.google.com/coursespring_1/IMG_20190726_195353.jpg">
+        <img src="{{bucketUrl}}/cat{{item.id}}.jpg">
       </ion-thumbnail>
       <h2> {{ item.nome }} </h2>
     </button>
