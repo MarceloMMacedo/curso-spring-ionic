@@ -11,13 +11,11 @@ constructor(public http:HttpClient,public storege :StorageService){
 
 }
 findByEmail(email: string):Observable<ClienteDTO>{
-    let token=this.storege.getLocalUser();
+    /*let token=this.storege.getLocalUser();
     console.log('Bearer ' + token.token);
     let authHeard = new HttpHeaders({'Authorization':'Bearer '+token.token})
-
-    return this.http.get<ClienteDTO>(
-        `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,{'headers' : authHeard}
-        );
+    */
+    return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
 }
 getImageFromBucket(id : string) : Observable<any> {
     let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`
